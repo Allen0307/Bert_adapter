@@ -51,7 +51,7 @@ def get_args():
     parser.add_argument('--rte_epoch', default=40, type=int)
     parser.add_argument('--rte_lr', default=0.0001)
     parser.add_argument('--rte_len', default=350, type=int)
-    parser.add_argument('--rte_batch', default=32, type=int)
+    parser.add_argument('--rte_batch', default=16, type=int)
 
     #SST-2
     parser.add_argument('--sst_epoch', default=25, type=int)
