@@ -176,8 +176,8 @@ test_mm_dataset = Allen('test_mm')
 
 
 train_dataloader = DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
-val_m_dataloader = DataLoader(val_m_dataset,batch_size=batch_size/2)
-val_mm_dataloader = DataLoader(val_mm_dataset,batch_size=batch_size/2)
+val_m_dataloader = DataLoader(val_m_dataset,batch_size=batch_size)
+val_mm_dataloader = DataLoader(val_mm_dataset,batch_size=batch_size)
 test_m_dataloader = DataLoader(test_m_dataset,batch_size=batch_size)
 test_mm_dataloader = DataLoader(test_mm_dataset,batch_size=batch_size)
 
