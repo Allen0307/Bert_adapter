@@ -3,7 +3,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     # options
     parser.add_argument('-s', '--seed', default=307, type=int)
-    parser.add_argument('-g', '--GLUE_path', default='GLUE', type=str)
+    parser.add_argument('-g', '--GLUE_path', default='../GLUE', type=str)
     parser.add_argument('-o', '--output_path', default='GLUE', type=str)
     '''
     output_path就是你要跑的模型位置，資料夾名稱要有模型名稱
