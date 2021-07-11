@@ -24,11 +24,11 @@ from time import sleep
 import time
 import csv
 import matplotlib.pyplot as plt
-from .transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-from .modelconfig import get_args
+from modelconfig import get_args
 args= get_args()
 
 SEED = args.seed

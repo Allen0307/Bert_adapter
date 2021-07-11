@@ -28,12 +28,12 @@ import time
 import sys
 import matplotlib.pyplot as plt
 from scipy import stats
-from .transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel
 from sklearn.metrics import f1_score
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-from .modelconfig import get_args
+from modelconfig import get_args
 args= get_args()
 
 SEED = args.seed

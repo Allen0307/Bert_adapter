@@ -27,7 +27,7 @@ import torch.utils.checkpoint
 from torch import nn
 from torch.nn import CrossEntropyLoss, MSELoss
 
-from ....modelconfig import get_args
+from modelconfig import get_args
 args= get_args()
 
 from ...activations import ACT2FN
