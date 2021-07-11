@@ -48,7 +48,7 @@ def get_args():
     parser.add_argument('--qqp_batch', default=32, type=int)
 
     #RTE
-    parser.add_argument('--rte_epoch', default=40, type=int)
+    parser.add_argument('--rte_epoch', default=60, type=int)
     parser.add_argument('--rte_lr', default=0.0001)
     parser.add_argument('--rte_len', default=350, type=int)
     parser.add_argument('--rte_batch', default=16, type=int)
