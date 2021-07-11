@@ -60,7 +60,7 @@ test_path = os.path.join(data_dir, 'RTE/test.tsv')
 df_test = pd.read_csv(test_path, sep='\t')
 df_test.columns = ['id', 'sen1', 'sen2']
 
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = BertTokenizer.from_pretrained("bert-large-uncased")
 
 # -
 class Allen(Dataset): 
@@ -158,7 +158,7 @@ class Model(nn.Module):
 
         self.fc = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(768,2),
+            nn.Linear(1024,2),
         )
 
         for name,param in self.fc.named_parameters(): 
@@ -170,7 +170,7 @@ class Model(nn.Module):
         return answer
 
 # +
-backbond = BertModel.from_pretrained("bert-base-uncased").to(device)
+backbond = BertModel.from_pretrained("bert-large-uncased").to(device)
 model = Model(backbond).to(device)
 loss_funtion = nn.CrossEntropyLoss()
 

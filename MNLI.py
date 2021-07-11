@@ -69,7 +69,7 @@ df_test_match = pd.read_csv(test_match_path, sep='\t',error_bad_lines=False, kee
 test_mismatch_path = os.path.join(data_dir,'MNLI/test_mismatched.tsv')
 df_test_mismatch = pd.read_csv(test_mismatch_path, sep='\t',error_bad_lines=False, keep_default_na = False)
 
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = BertTokenizer.from_pretrained("bert-large-uncased")
 
 
 # +
@@ -209,7 +209,7 @@ class Model(nn.Module):
 
         self.fc = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(768,3),
+            nn.Linear(1024,3),
         )
 
         for name,param in self.fc.named_parameters(): 
@@ -222,7 +222,7 @@ class Model(nn.Module):
 
 
 # +
-backbond = BertModel.from_pretrained("bert-base-uncased").to(device)
+backbond = BertModel.from_pretrained("bert-large-uncased").to(device)
 model = Model(backbond).to(device)
 loss_funtion = nn.CrossEntropyLoss()
 

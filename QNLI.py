@@ -72,7 +72,7 @@ df_test = pd.read_csv(test_path, sep='\t',error_bad_lines=False)
 df_test.columns = ['id', 'sen1', 'sen2']
 df_test.dropna()
 
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = BertTokenizer.from_pretrained("bert-large-uncased")
 
 # -
 class Allen(Dataset): 
@@ -160,7 +160,7 @@ class Model(nn.Module):
 
         self.fc = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(768,2),
+            nn.Linear(1024,2),
         )
 
         for name,param in self.fc.named_parameters(): 
@@ -179,7 +179,7 @@ val_dataloader = DataLoader(val_dataset,batch_size=batch_size)
 test_dataloader = DataLoader(test_dataset,batch_size=batch_size)
 
 # +
-backbond = BertModel.from_pretrained("bert-base-uncased").to(device)
+backbond = BertModel.from_pretrained("bert-large-uncased").to(device)
 model = Model(backbond).to(device)
 loss_funtion = nn.CrossEntropyLoss()
 

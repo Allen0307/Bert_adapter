@@ -463,7 +463,7 @@ class BertOutput(nn.Module):
         self.condition = condition
         if 'vector' in args.output_path:
             print('目前架構 ： Vector_linear !!!')
-            self.adapter_vector = nn.Parameter(torch.ones((768), requires_grad=True))
+            self.adapter_vector = nn.Parameter(torch.ones((1024), requires_grad=True))
             if args.task_specific == 0:
                 self.adapter_alpha = nn.Linear(config.intermediate_size, 1) #每個layer的xi都不一樣
             else:
@@ -595,16 +595,16 @@ class BertEncoder(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.config = config
-
+        print('你現在使用的BERT有幾層：', config.num_hidden_layers)
         #learable
         if 'serial' in args.output_path:
-            self.layer = nn.ModuleList([BertLayer(config, 'serial', self.adapter_alpha) for _ in range(12)])
+            self.layer = nn.ModuleList([BertLayer(config, 'serial', self.adapter_alpha) for _ in range(config.num_hidden_layers)])
         else:
             if args.task_specific == 1:
                 self.adapter_alpha = nn.Linear(config.intermediate_size, 1) #每個layer的xi都一樣
-                self.layer = nn.ModuleList([BertLayer(config, 'mixed', self.adapter_alpha) for _ in range(12)])
+                self.layer = nn.ModuleList([BertLayer(config, 'mixed', self.adapter_alpha) for _ in range(config.num_hidden_layers)])
             else:
-                self.layer = nn.ModuleList([BertLayer(config, 'mixed') for _ in range(12)])
+                self.layer = nn.ModuleList([BertLayer(config, 'mixed') for _ in range(config.num_hidden_layers)])
 
     def forward(
         self,

@@ -70,7 +70,7 @@ test_path = os.path.join(data_dir,'STS-B/test.tsv')
 df_test = pd.read_csv(test_path, sep='\t',error_bad_lines=False)
 df_test.dropna()
 
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = BertTokenizer.from_pretrained("bert-large-uncased")
 
 # -
 class Allen(Dataset): 
@@ -167,7 +167,7 @@ class Model(nn.Module):
                 param.requires_grad = False
 
         self.fc = nn.Sequential(
-            nn.Linear(768,1),
+            nn.Linear(1024,1),
         )
 
         for name,param in self.fc.named_parameters(): 
@@ -178,7 +178,7 @@ class Model(nn.Module):
         answer = self.fc(embedding)
         return answer
 # +
-backbond = BertModel.from_pretrained("bert-base-uncased").to(device)
+backbond = BertModel.from_pretrained("bert-large-uncased").to(device)
 model = Model(backbond).to(device)
 loss_funtion = nn.MSELoss()
 
